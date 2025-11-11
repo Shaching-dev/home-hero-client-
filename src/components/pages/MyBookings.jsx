@@ -10,7 +10,10 @@ const MyBookings = () => {
       fetch(`http://localhost:3000/booked?email=${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
-          setBooked(data);
+          const sortedData = [...data].sort(
+            (a, b) => b.customer_price - a.customer_price
+          );
+          setBooked(sortedData);
         });
     }
   }, [user]);
@@ -42,7 +45,7 @@ const MyBookings = () => {
                 (booked) => booked._id !== _id
               );
               remaingServices.sort(
-                (a, b) => a.customer_price - b.customer_price
+                (a, b) => b.customer_price - a.customer_price
               );
               setBooked(remaingServices);
             }
@@ -54,7 +57,9 @@ const MyBookings = () => {
   return (
     <div>
       <div>
-        <h3>My Bookings {bookeds.length} </h3>
+        <h3 className="text-4xl text-center font-bold my-5">
+          My Bookings <span className="text-primary">{bookeds.length} </span>
+        </h3>
       </div>
 
       <div>
@@ -93,7 +98,7 @@ const MyBookings = () => {
                       <button
                         onClick={() => handleDeleteService(book._id)}
                         className="btn outline outline-red-500 text-red-500">
-                        Remove Service
+                        Remove Booking
                       </button>
                     </th>
                   </tr>
