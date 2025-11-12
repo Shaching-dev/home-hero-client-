@@ -3,12 +3,12 @@ import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
 import { MoveLeft } from "lucide-react";
 import { useNavigate } from "react-router";
-import { ClipLoader } from "react-spinners"; // ✅ import spinner
+import { ClipLoader } from "react-spinners";
 
 const AddServices = () => {
   const { user } = use(AuthContext);
   const [loading, setLoading] = useState(false);
-  const [redirecting, setRedirecting] = useState(false); // ✅ for loader on redirect
+  const [redirecting, setRedirecting] = useState(false);
   const navigate = useNavigate();
 
   const categories = ["Electrician", "Plumber", "Cleaner", "Gardener"];
@@ -57,13 +57,12 @@ const AddServices = () => {
   };
 
   const handleBack = () => {
-    setRedirecting(true); // show loader
+    setRedirecting(true);
     setTimeout(() => {
-      navigate("/"); // simulate navigation delay
+      navigate("/");
     }, 1000);
   };
 
-  // ✅ Show full-page loader when redirecting
   if (redirecting) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -104,7 +103,6 @@ const AddServices = () => {
           />
         </div>
 
-        {/* Category */}
         <div className="flex flex-col">
           <label className="mb-2 font-medium">Category</label>
           <select
@@ -120,7 +118,6 @@ const AddServices = () => {
           </select>
         </div>
 
-        {/* Price */}
         <div className="flex flex-col">
           <label className="mb-2 font-medium">Price</label>
           <input
@@ -132,7 +129,6 @@ const AddServices = () => {
           />
         </div>
 
-        {/* Provider Name */}
         <div className="flex flex-col">
           <label className="mb-2 font-medium">Provider Name</label>
           <input
@@ -144,7 +140,6 @@ const AddServices = () => {
           />
         </div>
 
-        {/* Description */}
         <div className="flex flex-col md:col-span-2">
           <label className="mb-2 font-medium">Description</label>
           <textarea
@@ -156,7 +151,6 @@ const AddServices = () => {
           />
         </div>
 
-        {/* Provider Image */}
         <div className="flex flex-col">
           <label className="mb-2 font-medium">Provider Image URL</label>
           <input
@@ -167,7 +161,6 @@ const AddServices = () => {
           />
         </div>
 
-        {/* Email */}
         <div className="flex flex-col">
           <label className="mb-2 font-medium">Email</label>
           <input
@@ -179,7 +172,6 @@ const AddServices = () => {
           />
         </div>
 
-        {/* Phone */}
         <div className="flex flex-col">
           <label className="mb-2 font-medium">Provider Contact Number</label>
           <input
@@ -191,7 +183,6 @@ const AddServices = () => {
           />
         </div>
 
-        {/* Service Image */}
         <div className="flex flex-col">
           <label className="mb-2 font-medium">Service Image</label>
           <input
@@ -203,7 +194,6 @@ const AddServices = () => {
           />
         </div>
 
-        {/* Submit Button */}
         <div className="md:col-span-2">
           <button
             type="submit"
