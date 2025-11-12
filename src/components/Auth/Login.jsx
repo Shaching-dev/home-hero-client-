@@ -25,7 +25,6 @@ const Login = () => {
     try {
       await signInUser(email, password);
 
-      // Optional: check if user object exists
       if (user) {
         toast.success("Login successful! Redirecting...");
         setTimeout(() => {
@@ -33,7 +32,6 @@ const Login = () => {
         }, 1500);
       }
     } catch (error) {
-      // Firebase auth error handling
       switch (error.code) {
         case "auth/user-not-found":
           toast.error("Email not found! Please register first.");

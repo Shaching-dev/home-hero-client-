@@ -44,7 +44,9 @@ const Registration = () => {
 
         updateUser(name, photo)
           .then(() => {
-            toast.success("Registration successful! Now Login");
+            toast.success("Registration successful! Now Login", {
+              autoClose: 1500,
+            });
             setTimeout(() => {
               navigate("/login");
             }, 1500);
@@ -81,7 +83,6 @@ const Registration = () => {
         </p>
 
         <form onSubmit={handleEmailPasswordRegister} className="space-y-5">
-          {/* Name */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">
               Full Name
@@ -95,7 +96,6 @@ const Registration = () => {
             />
           </div>
 
-          {/* Photo */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">
               Photo URL
@@ -108,7 +108,6 @@ const Registration = () => {
             />
           </div>
 
-          {/* Email */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">
               Email Address
@@ -122,7 +121,6 @@ const Registration = () => {
             />
           </div>
 
-          {/* Password */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">
               Password
@@ -143,7 +141,6 @@ const Registration = () => {
             </div>
           </div>
 
-          {/* Register Button */}
           <button
             type="submit"
             className="btn w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold mt-4">
@@ -151,14 +148,12 @@ const Registration = () => {
           </button>
         </form>
 
-        {/* Divider */}
         <div className="flex items-center my-6">
           <hr className="flex-1 border-gray-300" />
           <span className="px-3 text-gray-500 text-sm">or</span>
           <hr className="flex-1 border-gray-300" />
         </div>
 
-        {/* Google login */}
         <button
           onClick={handleLoginWithGoogle}
           type="button"
