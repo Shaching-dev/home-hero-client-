@@ -11,14 +11,12 @@ const ServicesDetails = ({ service }) => {
   const handleViewDetails = () => {
     setLoading(true);
 
-    // Simulate loading delay (you can remove this if you have real fetch logic)
     setTimeout(() => {
       navigate(`/allServiceDetails/${_id}`);
       setLoading(false);
     }, 1000);
   };
 
-  // ✅ Full-screen loader
   if (loading) {
     return (
       <div className="fixed inset-0 flex justify-center items-center bg-white z-50">
@@ -38,7 +36,6 @@ const ServicesDetails = ({ service }) => {
 
   return (
     <div className="sm:max-w-sm lg:w-[400px] mx-auto bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300">
-      {/* Image Section */}
       <div className="relative">
         <img
           src={image_url}
@@ -50,7 +47,6 @@ const ServicesDetails = ({ service }) => {
         </span>
       </div>
 
-      {/* Content Section */}
       <div className="p-5 space-y-3">
         <h2 className="text-lg font-semibold text-gray-800">
           Provider: <span className="text-blue-600">{provider_name}</span>

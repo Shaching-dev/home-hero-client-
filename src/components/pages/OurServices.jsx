@@ -3,7 +3,6 @@ import ServicesDetails from "./ServicesDetails";
 
 const OurServices = ({ servicesPromise }) => {
   const services = use(servicesPromise);
-  //   console.log(services);
 
   return (
     <div>
