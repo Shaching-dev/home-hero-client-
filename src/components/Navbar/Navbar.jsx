@@ -54,8 +54,9 @@ const Navbar = () => {
               : "text-gray-700 hover:text-blue-600"
           }`
         }>
-        Home
+        <h2>Home</h2>
       </NavLink>
+
       <NavLink
         to="/services"
         className={({ isActive }) =>
