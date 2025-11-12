@@ -2,6 +2,8 @@ import React, { useContext, useRef } from "react";
 import { Mail, Phone } from "lucide-react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ShowMyServices = ({
   service,
@@ -12,7 +14,7 @@ const ShowMyServices = ({
   const { user } = useContext(AuthContext);
   const editServiceModal = useRef(null);
 
-  // DELETE - Fixed filter bug!
+  // DELETE SERVICE
   const handleDeleteService = (_id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -31,7 +33,6 @@ const ShowMyServices = ({
           .then((data) => {
             if (data.deletedCount > 0) {
               Swal.fire("Deleted!", "Service removed successfully.", "success");
-              // Correct: Remove the deleted one
               const remaining = services.filter((ser) => ser._id !== _id);
               setServices(remaining);
             }
@@ -40,7 +41,7 @@ const ShowMyServices = ({
     });
   };
 
-  // EDIT - Now updates UI instantly + refreshes from server
+  // EDIT SERVICE
   const handleEditService = (event) => {
     event.preventDefault();
     const updatedService = {
@@ -66,13 +67,10 @@ const ShowMyServices = ({
           Swal.fire("Success!", "Service updated successfully.", "success");
           editServiceModal.current.close();
 
-          // Option 1: Optimistically update UI
           const updatedServices = services.map((s) =>
             s._id === service._id ? { ...s, ...updatedService } : s
           );
           setServices(updatedServices);
-
-          // Option 2: Or refetch fresh data (more reliable)
           refreshServices();
         } else {
           Swal.fire("Error", "Failed to update service.", "error");
@@ -83,13 +81,31 @@ const ShowMyServices = ({
       });
   };
 
+  // BOOK BUTTON HANDLER
+  const handleBookClick = () => {
+    if (user?.email === service.provider_email) {
+      toast.error("❌ You can't book your own service!", {
+        position: "top-center",
+        autoClose: 3000,
+        theme: "colored",
+      });
+      return;
+    }
+
+    // Otherwise, you can navigate or do booking logic
+    toast.success("✅ Booking process started!", {
+      position: "top-center",
+      autoClose: 3000,
+      theme: "colored",
+    });
+  };
+
   const openModal = () => editServiceModal.current.showModal();
 
   return (
     <>
-      <div className="bg-white shadow-xl rounded-2xl overflow-hidden hover:shadow-2xl transition-all w-full max-w-2xl mx-auto mb-8">
+      <div className="bg-white  shadow-xl rounded-2xl overflow-hidden hover:shadow-2xl transition-all w-full max-w-2xl mx-auto mb-8">
         <div className="flex flex-col">
-          {/* Image */}
           <div className="relative">
             <img
               src={service.service_image}
@@ -101,7 +117,6 @@ const ShowMyServices = ({
             </span>
           </div>
 
-          {/* Content */}
           <div className="p-6 flex flex-col justify-between flex-grow">
             <div>
               <h2 className="text-2xl font-bold text-gray-800">
@@ -134,12 +149,16 @@ const ShowMyServices = ({
                   className="flex-1 sm:flex-initial bg-red-600 text-white px-5 py-2 rounded-lg hover:bg-red-700 transition">
                   Delete
                 </button>
+                <button
+                  onClick={handleBookClick}
+                  className="flex-1 sm:flex-initial bg-purple-700 text-white font-semibold px-5 py-2 rounded-lg hover:bg-purple-800 transition">
+                  Book
+                </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Provider Footer */}
         <div className="bg-gray-50 p-5 border-t flex items-center gap-4">
           <img
             src={service.provider_image || user?.photoURL}
@@ -165,7 +184,6 @@ const ShowMyServices = ({
         <div className="modal-box max-w-2xl">
           <h3 className="text-2xl font-bold mb-6">Edit Service</h3>
           <form onSubmit={handleEditService} className="space-y-4">
-            {/* All your input fields - same as before */}
             <input
               name="service_name"
               defaultValue={service.service_Name}
@@ -243,6 +261,9 @@ const ShowMyServices = ({
           </form>
         </div>
       </dialog>
+
+      {/* Toast Container */}
+      <ToastContainer />
     </>
   );
 };

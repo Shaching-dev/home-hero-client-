@@ -39,14 +39,14 @@ const MyServices = () => {
             You haven't added any services yet.
           </p>
         ) : (
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="flex flex-col md:flex-row gap-10">
             {services.map((service) => (
               <ShowMyServices
                 key={service._id}
                 service={service}
                 services={services}
                 setServices={setServices}
-                refreshServices={fetchServices} // Pass refresh function
+                refreshServices={fetchServices}
               />
             ))}
           </div>
