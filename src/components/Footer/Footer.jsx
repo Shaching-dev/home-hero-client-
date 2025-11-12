@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 mt-5">
       <Container>
-        <div className="max-w-9xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="max-w-9xl  mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
           <div>
             <h2 className="text-2xl font-bold text-white mb-3">HomeHero</h2>
             <p className="text-gray-400 leading-relaxed">

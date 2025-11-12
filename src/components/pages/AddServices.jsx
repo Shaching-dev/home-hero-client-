@@ -11,7 +11,7 @@ const AddServices = () => {
   const [redirecting, setRedirecting] = useState(false);
   const navigate = useNavigate();
 
-  const categories = ["Electrician", "Plumber", "Cleaner", "Gardener"];
+  const categories = ["Electrician", "Plumber", "Cleaner", "Gardener", "Other"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,16 +41,16 @@ const AddServices = () => {
         if (data.insertedId) {
           form.reset();
           Swal.fire({
-            title: "Service Added Successfully!",
+            title: "✅ Service Added Successfully!",
             icon: "success",
-            confirmButtonColor: "#3085d6",
+            confirmButtonColor: "#4f46e5",
           });
         }
       })
       .catch(() => {
         setLoading(false);
         Swal.fire({
-          title: "Failed to add service",
+          title: "❌ Failed to add service",
           icon: "error",
         });
       });
@@ -65,148 +65,170 @@ const AddServices = () => {
 
   if (redirecting) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <ClipLoader size={60} color="#3b82f6" />
+      <div className="flex justify-center items-center h-screen bg-gradient-to-br from-indigo-100 via-white to-indigo-50">
+        <ClipLoader size={60} color="#4f46e5" />
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div
-        onClick={handleBack}
-        className="text-2xl font-bold mb-6 text-primary flex items-center cursor-pointer">
-        <span className="text-3xl font-bold">
-          <MoveLeft />
-        </span>
-        <h3>Back to home</h3>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-white to-indigo-50 flex justify-center items-center px-4 py-10">
+      <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-2xl p-8 w-full max-w-4xl border border-indigo-100">
+        {/* Back button */}
+        <div
+          onClick={handleBack}
+          className="text-indigo-600 flex items-center gap-2 cursor-pointer hover:text-indigo-800 transition mb-6">
+          <MoveLeft size={24} />
+          <span className="font-medium">Back to Home</span>
+        </div>
+
+        {/* Title */}
+        <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-8">
+          Add <span className="text-indigo-600">New Service</span>
+        </h2>
+
+        {/* Form */}
+        <form
+          onSubmit={handleSubmit}
+          className="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
+          {/* Service Name */}
+          <div className="flex flex-col">
+            <label className="font-semibold text-gray-700 mb-2">
+              Service Name
+            </label>
+            <input
+              type="text"
+              name="serviceName"
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              placeholder="Enter service name"
+              required
+            />
+          </div>
+
+          {/* Category */}
+          <div className="flex flex-col">
+            <label className="font-semibold text-gray-700 mb-2">Category</label>
+            <select
+              name="category"
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              required>
+              <option value="">Select category</option>
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Price */}
+          <div className="flex flex-col">
+            <label className="font-semibold text-gray-700 mb-2">Price</label>
+            <input
+              type="number"
+              name="price"
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              placeholder="Enter price"
+              required
+            />
+          </div>
+
+          {/* Provider Name */}
+          <div className="flex flex-col">
+            <label className="font-semibold text-gray-700 mb-2">
+              Provider Name
+            </label>
+            <input
+              type="text"
+              name="providerName"
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              defaultValue={user?.displayName}
+              readOnly
+            />
+          </div>
+
+          {/* Description */}
+          <div className="flex flex-col md:col-span-2">
+            <label className="font-semibold text-gray-700 mb-2">
+              Description
+            </label>
+            <textarea
+              name="description"
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              placeholder="Write about the service..."
+              rows={4}
+              required
+            />
+          </div>
+
+          {/* Provider Image */}
+          <div className="flex flex-col">
+            <label className="font-semibold text-gray-700 mb-2">
+              Provider Image URL
+            </label>
+            <input
+              type="text"
+              name="imageUrl"
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              defaultValue={user?.photoURL}
+            />
+          </div>
+
+          {/* Email */}
+          <div className="flex flex-col">
+            <label className="font-semibold text-gray-700 mb-2">Email</label>
+            <input
+              type="email"
+              name="email"
+              className="border border-gray-300 rounded-lg p-3 bg-gray-100"
+              defaultValue={user?.email}
+              readOnly
+            />
+          </div>
+
+          {/* Phone */}
+          <div className="flex flex-col">
+            <label className="font-semibold text-gray-700 mb-2">
+              Provider Contact
+            </label>
+            <input
+              type="text"
+              name="phone"
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              placeholder="Enter your contact number"
+              required
+            />
+          </div>
+
+          {/* Service Image */}
+          <div className="flex flex-col">
+            <label className="font-semibold text-gray-700 mb-2">
+              Service Image URL
+            </label>
+            <input
+              type="text"
+              name="serviceImg"
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              placeholder="Enter your service image URL"
+              required
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div className="md:col-span-2 mt-4">
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full py-3 rounded-lg text-white font-semibold shadow-md transition duration-300 ${
+                loading
+                  ? "bg-indigo-300 cursor-not-allowed"
+                  : "bg-indigo-600 hover:bg-indigo-700"
+              }`}>
+              {loading ? "Adding Service..." : "Add Service"}
+            </button>
+          </div>
+        </form>
       </div>
-
-      <div>
-        <h3 className="text-4xl text-center mb-5 font-semibold">
-          Add <span className="text-secondary">Services</span>
-        </h3>
-      </div>
-
-      <form
-        onSubmit={handleSubmit}
-        className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-        {/* Service Name */}
-        <div className="flex flex-col">
-          <label className="mb-2 font-medium">Service Name</label>
-          <input
-            type="text"
-            name="serviceName"
-            className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter service name"
-            required
-          />
-        </div>
-
-        <div className="flex flex-col">
-          <label className="mb-2 font-medium">Category</label>
-          <select
-            name="category"
-            className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            required>
-            <option value="">Select category</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="flex flex-col">
-          <label className="mb-2 font-medium">Price</label>
-          <input
-            type="number"
-            name="price"
-            className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter price"
-            required
-          />
-        </div>
-
-        <div className="flex flex-col">
-          <label className="mb-2 font-medium">Provider Name</label>
-          <input
-            type="text"
-            name="providerName"
-            className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            defaultValue={user?.displayName}
-            readOnly
-          />
-        </div>
-
-        <div className="flex flex-col md:col-span-2">
-          <label className="mb-2 font-medium">Description</label>
-          <textarea
-            name="description"
-            className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter description"
-            rows={4}
-            required
-          />
-        </div>
-
-        <div className="flex flex-col">
-          <label className="mb-2 font-medium">Provider Image URL</label>
-          <input
-            type="text"
-            name="imageUrl"
-            className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            defaultValue={user?.photoURL}
-          />
-        </div>
-
-        <div className="flex flex-col">
-          <label className="mb-2 font-medium">Email</label>
-          <input
-            type="email"
-            name="email"
-            className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            defaultValue={user?.email}
-            readOnly
-          />
-        </div>
-
-        <div className="flex flex-col">
-          <label className="mb-2 font-medium">Provider Contact Number</label>
-          <input
-            type="text"
-            name="phone"
-            className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Type your contact number"
-            required
-          />
-        </div>
-
-        <div className="flex flex-col">
-          <label className="mb-2 font-medium">Service Image</label>
-          <input
-            type="text"
-            name="serviceImg"
-            className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your service image URL"
-            required
-          />
-        </div>
-
-        <div className="md:col-span-2">
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full p-3 rounded text-white transition ${
-              loading
-                ? "bg-blue-400 cursor-not-allowed"
-                : "bg-blue-500 hover:bg-blue-600"
-            }`}>
-            {loading ? "Adding Service..." : "Add Service"}
-          </button>
-        </div>
-      </form>
     </div>
   );
 };
