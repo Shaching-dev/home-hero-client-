@@ -57,8 +57,8 @@ const AuthProvider = ({ children }) => {
       await updateProfile(auth.currentUser, profileData);
 
       setUser({ ...auth.currentUser });
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      // log
     }
   };
 

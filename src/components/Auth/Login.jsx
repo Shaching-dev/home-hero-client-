@@ -73,11 +73,8 @@ const Login = () => {
         setTimeout(() => {
           navigate("/");
         });
-        console.log(result.user);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   return (

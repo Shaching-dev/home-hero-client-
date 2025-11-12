@@ -67,9 +67,7 @@ const ShowMyServices = ({ service, services, setServices }) => {
       body: JSON.stringify(updatedService),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log("after updating ", data);
-      });
+      .then((data) => {});
   };
 
   return (

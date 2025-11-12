@@ -34,7 +34,6 @@ const AllServiceDetails = () => {
     fetch(`http://localhost:3000/services/booked/${serviceId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("after plaing price ", data);
         setService(data);
       });
   }, [serviceId]);
@@ -60,14 +59,13 @@ const AllServiceDetails = () => {
 
   const handleBookSubmit = (event) => {
     event.preventDefault();
-    console.log("submitted");
+
     const name = event.target.name.value;
     const email = event.target.email.value;
     const phone = event.target.phone.value;
     const price = event.target.price.value;
     const details = event.target.details.value;
     const photo = event.target.photo.value;
-    console.log(name, email, phone, price, details, serviceId, photo);
 
     const newBooked = {
       service: serviceId,

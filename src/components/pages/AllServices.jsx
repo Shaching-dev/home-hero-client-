@@ -3,7 +3,6 @@ import ServicesPage from "./ServicesPage";
 
 const AllServices = ({ allServicesPromise }) => {
   const allServices = use(allServicesPromise);
-  console.log(allServices);
 
   return (
     <div>

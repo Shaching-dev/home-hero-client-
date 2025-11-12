@@ -56,8 +56,6 @@ const ReviewForm = ({ serviceId }) => {
 
       const savedReview = await res.json();
 
-      console.log("Saved review from backend:", savedReview);
-
       if (!savedReview._id) {
         savedReview._id = `temp-${Date.now()}`;
       }
