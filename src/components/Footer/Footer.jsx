@@ -15,7 +15,6 @@ const Footer = () => {
     <footer className="bg-gray-900 text-gray-300 mt-5">
       <Container>
         <div className="max-w-9xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
-          {/* Brand */}
           <div>
             <h2 className="text-2xl font-bold text-white mb-3">HomeHero</h2>
             <p className="text-gray-400 leading-relaxed">
@@ -26,7 +25,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">
               Quick Links
@@ -57,7 +55,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
             <ul className="space-y-3">
@@ -73,7 +70,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social Media */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Follow Us</h3>
             <div className="flex gap-4">
@@ -91,7 +87,6 @@ const Footer = () => {
         </div>
       </Container>
 
-      {/* Bottom */}
       <div className="border-t border-gray-700 mt-10 py-6 text-center text-gray-500 text-sm">
         © {new Date().getFullYear()} HomeHero — All rights reserved.
       </div>

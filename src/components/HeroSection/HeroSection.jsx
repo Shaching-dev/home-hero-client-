@@ -51,11 +51,10 @@ const HeroSection = () => {
         navigation
         className="w-full h-full"
         onSwiper={(swiper) => {
-          // Pause autoplay when mouse enters
           swiper.el.addEventListener("mouseenter", () =>
             swiper.autoplay.stop()
           );
-          // Resume autoplay when mouse leaves
+
           swiper.el.addEventListener("mouseleave", () =>
             swiper.autoplay.start()
           );

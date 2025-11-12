@@ -8,7 +8,6 @@ const Profile = () => {
   const [name, setName] = useState(user?.displayName || "");
   const [photo, setPhoto] = useState(user?.photoURL || "");
 
-  // 🔹 Handle profile update
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -69,7 +68,6 @@ const Profile = () => {
         </button>
       </div>
 
-      {/* 🔹 Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
           <div className="bg-white p-8 rounded-2xl w-full max-w-sm shadow-lg relative">

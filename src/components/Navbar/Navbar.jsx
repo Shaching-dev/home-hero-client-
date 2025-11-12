@@ -108,17 +108,14 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md">
       <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-        {/* Logo */}
         <Link
           to="/"
           className="flex items-center gap-2 text-2xl font-extrabold text-gray-800">
           <span className="text-blue-600">Home</span>Hero 🏠
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-4">{links}</div>
 
-        {/* Right Section */}
         <div className="flex items-center gap-3">
           {user ? (
             <div className="relative" ref={dropdownRef}>
@@ -161,7 +158,6 @@ const Navbar = () => {
             </>
           )}
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-gray-700 ml-3"
             onClick={() => setMobileMenu((prev) => !prev)}>
@@ -170,7 +166,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
       {mobileMenu && (
         <div className="md:hidden bg-white border-t shadow-md animate-slideDown">
           <div className="flex flex-col items-center gap-2 py-4">{links}</div>

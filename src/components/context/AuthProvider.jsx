@@ -45,23 +45,20 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  //   ----------for update password
   // Forgot Password
   const forgotPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
 
-  // -----------update profile ------------------
   const updateUserProfile = async (profileData) => {
     if (!auth.currentUser) return;
 
     try {
       await updateProfile(auth.currentUser, profileData);
-      // Refresh local user state
+
       setUser({ ...auth.currentUser });
-      console.log("✅ Profile updated successfully!");
     } catch (error) {
-      console.error("❌ Error updating profile:", error);
+      console.log(error);
     }
   };
 
