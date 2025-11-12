@@ -3,6 +3,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
+import ReviewForm from "../pages/ReviewForm";
 
 const AllServiceDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -112,6 +113,11 @@ const AllServiceDetails = () => {
   return (
     <>
       <div>
+        <h2 className="text-4xl text-center font-bold text-primary mt-10">
+          Service Details
+        </h2>
+      </div>
+      <div>
         <h2
           onClick={handleBack}
           className="text-left my-5 text-4xl font-semibold flex gap-3 items-center cursor-pointer">
@@ -176,6 +182,7 @@ const AllServiceDetails = () => {
           </div>
         </div>
       </div>
+
       <div>
         {/* Open the modal using document.getElementById('ID').showModal() method */}
 
@@ -338,6 +345,10 @@ const AllServiceDetails = () => {
             </table>
           </div>
         </div>
+      </div>
+
+      <div className="my-10">
+        <ReviewForm />
       </div>
     </>
   );

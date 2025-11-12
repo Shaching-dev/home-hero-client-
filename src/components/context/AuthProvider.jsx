@@ -51,6 +51,20 @@ const AuthProvider = ({ children }) => {
     return sendPasswordResetEmail(auth, email);
   };
 
+  // -----------update profile ------------------
+  const updateUserProfile = async (profileData) => {
+    if (!auth.currentUser) return;
+
+    try {
+      await updateProfile(auth.currentUser, profileData);
+      // Refresh local user state
+      setUser({ ...auth.currentUser });
+      console.log("✅ Profile updated successfully!");
+    } catch (error) {
+      console.error("❌ Error updating profile:", error);
+    }
+  };
+
   //   ----------------------user observer
 
   useEffect(() => {
@@ -72,6 +86,7 @@ const AuthProvider = ({ children }) => {
     signOutUser,
     updateUser,
     forgotPassword,
+    updateUserProfile,
   };
 
   return <AuthContext value={userInfo}>{children}</AuthContext>;
