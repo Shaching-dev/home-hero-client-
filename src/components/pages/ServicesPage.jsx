@@ -6,7 +6,6 @@ const ServicesPage = ({ service }) => {
   return (
     <div>
       <div className="w-[400px]  mx-auto bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300">
-        {/* Image Section */}
         <div className="relative">
           <img
             src={image_url}
@@ -18,7 +17,6 @@ const ServicesPage = ({ service }) => {
           </span>
         </div>
 
-        {/* Content Section */}
         <div className="p-5 space-y-3">
           <h2 className="text-lg font-semibold text-gray-800">
             Provider: <span className="text-blue-600">{provider_name}</span>

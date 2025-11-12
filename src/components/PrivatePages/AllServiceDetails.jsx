@@ -184,8 +184,6 @@ const AllServiceDetails = () => {
       </div>
 
       <div>
-        {/* Open the modal using document.getElementById('ID').showModal() method */}
-
         <dialog
           ref={bookModalRef}
           className="modal modal-bottom sm:modal-middle">
@@ -292,7 +290,6 @@ const AllServiceDetails = () => {
         </dialog>
       </div>
 
-      {/* people intereted this service */}
       <div>
         <h3 className="text-5xl my-5 font-bold text-center">
           People who interested this service: <span>{services.length}</span>
@@ -301,7 +298,6 @@ const AllServiceDetails = () => {
         <div>
           <div className="overflow-x-auto">
             <table className="table">
-              {/* head */}
               <thead>
                 <tr>
                   <th>SL No.</th>

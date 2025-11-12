@@ -14,7 +14,6 @@ const ShowMyServices = ({
   const { user } = useContext(AuthContext);
   const editServiceModal = useRef(null);
 
-  // DELETE SERVICE
   const handleDeleteService = (_id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -41,7 +40,6 @@ const ShowMyServices = ({
     });
   };
 
-  // EDIT SERVICE
   const handleEditService = (event) => {
     event.preventDefault();
     const updatedService = {
@@ -81,7 +79,6 @@ const ShowMyServices = ({
       });
   };
 
-  // BOOK BUTTON HANDLER
   const handleBookClick = () => {
     if (user?.email === service.provider_email) {
       toast.error("❌ You can't book your own service!", {
@@ -92,7 +89,6 @@ const ShowMyServices = ({
       return;
     }
 
-    // Otherwise, you can navigate or do booking logic
     toast.success("✅ Booking process started!", {
       position: "top-center",
       autoClose: 3000,
@@ -179,7 +175,6 @@ const ShowMyServices = ({
         </div>
       </div>
 
-      {/* Edit Modal */}
       <dialog ref={editServiceModal} className="modal">
         <div className="modal-box max-w-2xl">
           <h3 className="text-2xl font-bold mb-6">Edit Service</h3>
@@ -262,7 +257,6 @@ const ShowMyServices = ({
         </div>
       </dialog>
 
-      {/* Toast Container */}
       <ToastContainer />
     </>
   );
