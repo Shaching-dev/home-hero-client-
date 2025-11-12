@@ -69,7 +69,6 @@ const MyBookings = () => {
 
       <div className="overflow-x-auto rounded-2xl shadow-lg bg-white">
         <table className="table w-full">
-          {/* head */}
           <thead>
             <tr className="bg-blue-100 text-gray-800 text-sm">
               <th className="py-3 px-4 text-left">SL No.</th>

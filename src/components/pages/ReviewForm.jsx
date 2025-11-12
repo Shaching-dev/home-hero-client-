@@ -7,7 +7,6 @@ const ReviewForm = ({ serviceId }) => {
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // FETCH REVIEWS
   const fetchReviews = async () => {
     if (!serviceId) return;
     setLoading(true);
@@ -21,7 +20,6 @@ const ReviewForm = ({ serviceId }) => {
       setReviews(data);
     } catch (err) {
       console.error("Failed to fetch reviews:", err.message);
-      // Don't set reviews to empty array on error - keep existing ones
     } finally {
       setLoading(false);
     }
@@ -31,7 +29,6 @@ const ReviewForm = ({ serviceId }) => {
     fetchReviews();
   }, [serviceId]);
 
-  // SUBMIT REVIEW - COMPLETELY FIXED VERSION
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
@@ -59,9 +56,8 @@ const ReviewForm = ({ serviceId }) => {
 
       const savedReview = await res.json();
 
-      console.log("Saved review from backend:", savedReview); // Debug log
+      console.log("Saved review from backend:", savedReview);
 
-      // Ensure the review has all required fields
       if (!savedReview._id) {
         savedReview._id = `temp-${Date.now()}`;
       }
@@ -69,7 +65,6 @@ const ReviewForm = ({ serviceId }) => {
         savedReview.createdAt = new Date().toISOString();
       }
 
-      // IMMEDIATELY ADD THE NEW REVIEW TO STATE
       setReviews((prevReviews) => [savedReview, ...prevReviews]);
 
       form.reset();
@@ -82,7 +77,6 @@ const ReviewForm = ({ serviceId }) => {
         showConfirmButton: false,
       });
 
-      // Refresh from server after a short delay to ensure data consistency
       setTimeout(() => {
         fetchReviews();
       }, 1500);
@@ -100,7 +94,6 @@ const ReviewForm = ({ serviceId }) => {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 px-4">
-      {/* FORM */}
       <div className="bg-white shadow-xl rounded-2xl p-8 border border-gray-200">
         <h2 className="text-3xl font-bold text-center mb-8 text-blue-700">
           Leave a Review
@@ -148,7 +141,6 @@ const ReviewForm = ({ serviceId }) => {
         </form>
       </div>
 
-      {/* REVIEWS LIST */}
       <div className="mt-12">
         <div className="flex justify-between items-center mb-8">
           <h3 className="text-3xl font-bold text-gray-800">
@@ -183,7 +175,6 @@ const ReviewForm = ({ serviceId }) => {
   );
 };
 
-// REVIEW CARD COMPONENT
 const ReviewCard = ({ review }) => {
   const stars = "★★★★★".substring(0, review.rating || 5);
   const emptyStars = "☆☆☆☆☆".substring(0, 5 - (review.rating || 5));
