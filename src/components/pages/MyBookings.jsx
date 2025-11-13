@@ -8,7 +8,9 @@ const MyBookings = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/booked?email=${user?.email}`)
+      fetch(
+        `https://hero-home-server-three.vercel.app/booked?email=${user?.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           const sortedData = [...data].sort(
@@ -30,7 +32,7 @@ const MyBookings = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/booked/${_id}`, {
+        fetch(`https://hero-home-server-three.vercel.app/booked/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

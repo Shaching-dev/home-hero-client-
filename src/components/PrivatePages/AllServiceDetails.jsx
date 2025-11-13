@@ -31,7 +31,9 @@ const AllServiceDetails = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/services/booked/${serviceId}`)
+    fetch(
+      `https://hero-home-server-three.vercel.app/services/booked/${serviceId}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setService(data);
@@ -80,7 +82,7 @@ const AllServiceDetails = () => {
       image_url: image_url,
     };
 
-    fetch("http://localhost:3000/booked", {
+    fetch("https://hero-home-server-three.vercel.app/booked", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

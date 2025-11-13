@@ -30,7 +30,7 @@ const AddServices = () => {
       service_image: form.serviceImg.value,
     };
 
-    fetch("http://localhost:3000/addServices", {
+    fetch("https://hero-home-server-three.vercel.app/addServices", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(addServices),

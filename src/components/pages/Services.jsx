@@ -23,7 +23,9 @@ const withDelay = (promise, ms) => {
 
 const Services = () => {
   const allServicesPromise = withDelay(
-    fetch("http://localhost:3000/services").then((res) => res.json()),
+    fetch("https://hero-home-server-three.vercel.app/services").then((res) =>
+      res.json()
+    ),
     1500
   );
 

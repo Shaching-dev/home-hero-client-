@@ -25,7 +25,7 @@ const ShowMyServices = ({
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/addServices/${_id}`, {
+        fetch(`https://hero-home-server-three.vercel.app/addServices/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -54,11 +54,14 @@ const ShowMyServices = ({
       provider_phone: event.target.phone.value,
     };
 
-    fetch(`http://localhost:3000/addServices/${service._id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedService),
-    })
+    fetch(
+      `https://hero-home-server-three.vercel.app/addServices/${service._id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedService),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

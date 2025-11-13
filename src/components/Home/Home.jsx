@@ -5,9 +5,9 @@ import WhyChooseUs from "../pages/WhyChooseUs";
 import CustomerTestimonials from "../pages/CustomerTestimonials";
 import { ThreeDots } from "react-loader-spinner";
 
-const servicesPromise = fetch("http://localhost:3000/our-services").then(
-  (res) => res.json()
-);
+const servicesPromise = fetch(
+  "https://hero-home-server-three.vercel.app/our-services"
+).then((res) => res.json());
 
 const Home = () => {
   return (

@@ -12,7 +12,7 @@ const MyServices = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `http://localhost:3000/addServices?email=${user.email}`
+        `https://hero-home-server-three.vercel.app/addServices?email=${user.email}`
       );
       const data = await res.json();
       setServices(data);

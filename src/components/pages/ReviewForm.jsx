@@ -11,7 +11,9 @@ const ReviewForm = ({ serviceId }) => {
     if (!serviceId) return;
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3000/reviews/${serviceId}`);
+      const res = await fetch(
+        `https://hero-home-server-three.vercel.app/reviews/${serviceId}`
+      );
       if (!res.ok) {
         const errorText = await res.text();
         throw new Error(`HTTP ${res.status}: ${errorText}`);
@@ -43,11 +45,14 @@ const ReviewForm = ({ serviceId }) => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/review", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newReview),
-      });
+      const res = await fetch(
+        "https://hero-home-server-three.vercel.app/review",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newReview),
+        }
+      );
 
       if (!res.ok) {
         const errorText = await res.text();
